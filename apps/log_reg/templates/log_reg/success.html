@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href='/logout'>Log Out</a>
+    <h2>Success! Welcome, {{user.first_name}}</h2>
+
+    <h3>Hello, {{user.name}}!</h3>
+
+    <p>Your wish list:</p>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Added By</th>
+        <th>Date Added</th>
+        <th>Action</th>
+      </tr>
+      {% for x in wishlist %}
+      <tr>
+        <td><a href='/show/{{x.id}}'>{{x.name}}</a></td>
+        <td>{{x.added_by.name}}</td>
+        <td>{{x.created_at}}</td>
+        {% if x.added_by == user %}
+        <td><a href='/delete/{{x.id}}'>Delete</a></td>
+        {% else %}
+        <td><a href='/remove/{{x.id}}'>Remove from my Wishlist</a></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+
+
+
+    <p>Other Users wishlist</p>
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Added By</th>
+        <th>Date Added</th>
+        <th>Action</th>
+      </tr>
+      {% for x in items %}
+      <tr>
+        <td><a href='/show/{{x.id}}'>{{x.name}}</a></td>
+        <td>{{x.added_by.name}}</td>
+        <td>{{x.created_at}}</td>
+        <td><a href='/add/{{x.id}}'>Add to my Wishlist</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+
+    <a href='/additem'>Add Item</a>
+
+
+  </body>
+</html>

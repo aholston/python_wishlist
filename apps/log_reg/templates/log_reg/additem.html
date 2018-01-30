@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <a href='/success'>Home</a>
+    <a href='/logout'>Log out</a>
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Create a New Wish List<h2>
+
+      <form action="/add" method="post">
+        {% csrf_token %}
+
+        <label for='item'>Item/Product</label>
+        <input type='text' name='item'>
+
+        <input type="submit" value="Add">
+
+      </form>
+
+  </body>
+</html>
